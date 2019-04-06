@@ -26,9 +26,9 @@ class Groups:
         for (node1, node2) in itertools.combinations(sender_nodes, 2):
             self.graph.add_edge(node1, node2, internal_cost)
 
-
     def add_inter_group_connection(self, group1, sender1, group2, sender2, cost):
         self.graph.add_edge(f"{group1}-{sender1}", f"{group2}-{sender2}", cost)
+
 
     def find_path(self, start_group_name, start_node, end_group_name, end_node):
         start_name = self.node_name(start_group_name, start_node)

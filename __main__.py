@@ -2,12 +2,30 @@ from groups import Groups
 
 groups = Groups()
 
+groups.add_group("1", ["A"], ["B"], 2)
+groups.add_group("2", ["E"], ["C", "D"], 1)
+groups.add_group("3", ["H"], ["F", "G"], 2)
+groups.add_group("4", [], ["I", "J", "K"], 2)
+groups.add_group("CB", [], ["CB"], 0)
+
+groups.add_inter_group_connection("1", "B", "2", "D", 8)
+groups.add_inter_group_connection("1", "B", "4", "J", 14)
+groups.add_inter_group_connection("2", "C", "3", "G", 8)
+groups.add_inter_group_connection("3", "F", "4", "K", 13)
+
+groups.add_inter_group_connection("CB", "CB", "1", "B", 10)
+groups.add_inter_group_connection("CB", "CB", "2", "C", 10)
+groups.add_inter_group_connection("CB", "CB", "3", "F", 10)
+groups.add_inter_group_connection("CB", "CB", "4", "J", 10)
+
+"""
 groups.add_group("1", ["A", "B", "C", "D", "E"], ["D", "E"], 1)
 groups.add_group("2", ["A", "B", "C"], ["D"], 1)
 groups.add_group("3", ["A", "B", "C"], ["D"], 1)
 
 groups.add_inter_group_connection("1", "D", "2", "D", 7)
 groups.add_inter_group_connection("1", "E", "3", "D", 7)
+"""
 
 
 start_node_group = input("Enter start node group:")
