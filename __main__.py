@@ -36,6 +36,19 @@ graph.add_edge("J", "K", 2)
 graph.add_edge("J", "I", 2)
 graph.add_edge("K", "F", 13)
 
-path_length, path = graph.find_shortest_path("A", "C")
-print(path_length)
-print([node.name for node in path])
+
+start_node = input("Enter start node:")
+end_node = input("Enter end node:")
+print()
+
+
+path_length, path = graph.find_shortest_path(start_node, end_node)
+
+print(f"Total cost: {path_length}")
+
+
+for i in range(len(path) - 1):
+    print(f"{path[i].name} {path[i].neighbours_dict[path[i+1]]}-> ", end="")
+
+print(path[-1].name)
+
