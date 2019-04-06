@@ -30,6 +30,8 @@ class Graph:
                 return shortest_open_distance, self.reconstruct_path(came_from, start_node, end_node)
 
             for (neighbour, cost) in shortest_open.neighbours_dict.items():
+                if neighbour in came_from:
+                    continue
                 open.push(neighbour, shortest_open_distance + cost)
                 came_from[neighbour] = shortest_open
 
