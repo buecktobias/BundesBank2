@@ -18,15 +18,6 @@ groups.add_inter_group_connection("CB", "CB", "2", "C", 10)
 groups.add_inter_group_connection("CB", "CB", "3", "F", 10)
 groups.add_inter_group_connection("CB", "CB", "4", "J", 10)
 
-"""
-groups.add_group("1", ["A", "B", "C", "D", "E"], ["D", "E"], 1)
-groups.add_group("2", ["A", "B", "C"], ["D"], 1)
-groups.add_group("3", ["A", "B", "C"], ["D"], 1)
-
-groups.add_inter_group_connection("1", "D", "2", "D", 7)
-groups.add_inter_group_connection("1", "E", "3", "D", 7)
-"""
-
 
 start_node_group = input("Enter start node group:")
 start_node = input("Enter start node:")
