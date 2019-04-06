@@ -1,48 +1,23 @@
-from graph import Graph
+from groups import Groups
 
-graph = Graph()
+groups = Groups()
 
-graph.add_node("A")
-graph.add_node("B")
-graph.add_node("C")
-graph.add_node("D")
-graph.add_node("E")
-graph.add_node("F")
-graph.add_node("G")
-graph.add_node("H")
-graph.add_node("I")
-graph.add_node("J")
-graph.add_node("K")
-graph.add_node("CB")
+groups.add_group("1", ["A", "B", "C", "D", "E"], ["D", "E"], 1)
+groups.add_group("2", ["A", "B", "C"], ["D"], 1)
+groups.add_group("3", ["A", "B", "C"], ["D"], 1)
 
-graph.add_edge("A", "B", 2)
-graph.add_edge("B","I", 14)
-graph.add_edge("B", "CB", 10)
-graph.add_edge("B", "D", 8)
-graph.add_edge("C", "D", 1)
-graph.add_edge("C", "E", 1)
-graph.add_edge("C", "CB", 10)
-graph.add_edge("C", "G", 8)
-graph.add_edge("D", "E", 1)
-graph.add_edge("F", "G", 2)
-graph.add_edge("F", "CB", 10)
-graph.add_edge("F", "K", 13)
-graph.add_edge("F", "H", 2)
-graph.add_edge("G", "H", 2)
-graph.add_edge("I", "K", 2)
-graph.add_edge("I", "B", 14)
-graph.add_edge("J", "CB", 10)
-graph.add_edge("J", "K", 2)
-graph.add_edge("J", "I", 2)
-graph.add_edge("K", "F", 13)
+groups.add_inter_group_connection("1", "D", "2", "D", 7)
+groups.add_inter_group_connection("1", "E", "3", "D", 7)
 
 
+start_node_group = input("Enter start node group:")
 start_node = input("Enter start node:")
+end_node_group = input("Enter end node group:")
 end_node = input("Enter end node:")
 print()
 
 
-path_length, path = graph.find_shortest_path(start_node, end_node)
+path_length, path = groups.find_path(start_node_group, start_node, end_node_group, end_node)
 
 print(f"Total cost: {path_length}")
 
