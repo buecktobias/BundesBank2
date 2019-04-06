@@ -1,6 +1,5 @@
-import sys
-
 from node import Node
+from priority import PriorityQueue
 
 class Graph:
     def __init__(self):
@@ -19,29 +18,19 @@ class Graph:
         start_node = self.dict_nodes[start_node_name]
         end_node = self.dict_nodes[end_node_name]
 
-        dict_open = {}
-        dict_open[start_node] = 0
+        open = PriorityQueue()
+        open.push(start_node, 0)
 
         came_from = {}
 
-        while len(dict_open) > 0:
-            shortest_open = None
-            shortest_open_distance = sys.maxsize
-            for (node, distance) in dict_open.items():
-                if distance < shortest_open_distance:
-                    shortest_open_distance = distance
-                    shortest_open = node
-
-            assert shortest_open is not None
-
-            del dict_open[shortest_open]
+        while len(open) > 0:
+            shortest_open, shortest_open_distance = open.pop()
 
             if shortest_open is end_node:
-                return (shortest_open_distance, self.reconstruct_path(came_from, start_node, end_node))
+                return shortest_open_distance, self.reconstruct_path(came_from, start_node, end_node)
 
             for (neighbour, cost) in shortest_open.neighbours_dict.items():
-
-                dict_open[neighbour] = shortest_open_distance + cost
+                open.push(neighbour, shortest_open_distance + cost)
                 came_from[neighbour] = shortest_open
 
         return None
