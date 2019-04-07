@@ -1,5 +1,4 @@
 from node import Node
-from priority import PriorityQueue
 
 from typing import Dict, List, Optional, Tuple
 import sys
@@ -22,9 +21,9 @@ class Graph:
         end_node = self.nodes[end_node_name]
 
         open_nodes = {}
+        for node in self.nodes.values():
+            open_nodes[node] = sys.maxsize
         open_nodes[start_node] = 0
-
-        closed = set()
 
         came_from = {}
 
@@ -32,13 +31,12 @@ class Graph:
             shortest_node = min(open_nodes, key=open_nodes.get)
             shortest_node_distance = open_nodes[shortest_node]
             del open_nodes[shortest_node]
-            closed.add(shortest_node)
 
             if shortest_node is end_node:
                 return shortest_node_distance, self.reconstruct_path(came_from, start_node, end_node)
 
             for (neighbour, cost) in shortest_node.neighbours_dict.items():
-                if neighbour in closed:
+                if neighbour not in open_nodes:
                     continue
                 minimum_known_cost = open_nodes.get(neighbour, sys.maxsize)
                 current_cost = shortest_node_distance + cost
